@@ -30,10 +30,6 @@ static NSString *URLScheme;
 
 - (instancetype)init
 {
-    if ((self = [super init])) {
-        self.dataCollector = [[BTDataCollector alloc]
-                              initWithEnvironment:BTDataCollectorEnvironmentProduction];
-    }
     return self;
 }
 
@@ -151,60 +147,6 @@ RCT_REMAP_METHOD(getCardNonce,
                   }];
 }
 
-
-RCT_EXPORT_METHOD(getDeviceData:(NSDictionary *)options callback:(RCTResponseSenderBlock)callback)
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        NSLog(@"%@", options);
-        
-        NSError *error = nil;
-        NSString *deviceData = nil;
-        NSString *environment = options[@"environment"];
-        NSString *dataSelector = options[@"dataCollector"];
-        NSString *merchantId = options[@"merchantId"];
-        
-        //Initialize the data collector and specify environment
-        if([environment isEqualToString: @"development"]){
-            self.dataCollector = [[BTDataCollector alloc]
-                                  initWithEnvironment:BTDataCollectorEnvironmentDevelopment];
-        } else if([environment isEqualToString: @"qa"]){
-            self.dataCollector = [[BTDataCollector alloc]
-                                  initWithEnvironment:BTDataCollectorEnvironmentQA];
-        } else if([environment isEqualToString: @"sandbox"]){
-            self.dataCollector = [[BTDataCollector alloc]
-                                  initWithEnvironment:BTDataCollectorEnvironmentSandbox];
-        }
-
-        if (merchantId != nil ) {
-            NSLog(@"Setting merchant id: %@", merchantId);
-            [self.dataCollector setFraudMerchantId:merchantId];
-        }
-        
-        //Data collection methods
-        if ([dataSelector isEqualToString: @"card"]){
-            deviceData = [self.dataCollector collectCardFraudData];
-        } else if ([dataSelector isEqualToString: @"both"]){
-            deviceData = [self.dataCollector collectFraudData];
-        } else if ([dataSelector isEqualToString: @"paypal"]){
-            deviceData = [PPDataCollector collectPayPalDeviceData];
-        } else {
-            NSMutableDictionary* details = [NSMutableDictionary dictionary];
-            [details setValue:@"Invalid data collector" forKey:NSLocalizedDescriptionKey];
-            error = [NSError errorWithDomain:@"RCTBraintree" code:255 userInfo:details];
-            NSLog (@"Invalid data collector. Use one of: card, paypal or both");
-        }
-        
-        NSArray *args = @[];
-        if ( error == nil ) {
-            args = @[[NSNull null], deviceData];
-        } else {
-            args = @[error.description, [NSNull null]];
-        }
-        
-        callback(args);
-    });
-}
 
 RCT_EXPORT_METHOD(showApplePayViewController:(NSDictionary *)options callback:(RCTResponseSenderBlock)callback)
 {

@@ -71,13 +71,6 @@
 			remoteGlobalIDString = 2DE12F091B59BE0100EA1BCF;
 			remoteInfo = BraintreeCore;
 		};
-		DE6D1C871D16F56100DA995F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE6D1C611D16F56100DA995F /* Braintree.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A76D7C001BB1CAB00000FA6A;
-			remoteInfo = BraintreeDataCollector;
-		};
 		DE6D1C891D16F56100DA995F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DE6D1C611D16F56100DA995F /* Braintree.xcodeproj */;
@@ -284,7 +277,6 @@
 				DE6D1C821D16F56100DA995F /* BraintreeApplePay.framework */,
 				DE6D1C841D16F56100DA995F /* BraintreeCard.framework */,
 				DE6D1C861D16F56100DA995F /* BraintreeCore.framework */,
-				DE6D1C881D16F56100DA995F /* BraintreeDataCollector.framework */,
 				DE6D1C8A1D16F56100DA995F /* BraintreePayPal.framework */,
 				DE6D1C8C1D16F56100DA995F /* BraintreeVenmo.framework */,
 				DE6D1C8E1D16F56100DA995F /* BraintreeUI.framework */,
@@ -433,13 +425,6 @@
 			fileType = wrapper.framework;
 			path = BraintreeCore.framework;
 			remoteRef = DE6D1C851D16F56100DA995F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DE6D1C881D16F56100DA995F /* BraintreeDataCollector.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = BraintreeDataCollector.framework;
-			remoteRef = DE6D1C871D16F56100DA995F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		DE6D1C8A1D16F56100DA995F /* BraintreePayPal.framework */ = {
