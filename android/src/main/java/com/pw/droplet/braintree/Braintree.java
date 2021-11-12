@@ -29,7 +29,6 @@ import com.braintreepayments.api.PayPal;
 import com.braintreepayments.api.interfaces.PaymentMethodNonceCreatedListener;
 import com.braintreepayments.api.interfaces.BraintreeErrorListener;
 import com.braintreepayments.api.models.CardNonce;
-import com.braintreepayments.api.DataCollector;
 import com.braintreepayments.api.interfaces.BraintreeResponseListener;
 import com.braintreepayments.api.models.Configuration;
 
@@ -248,48 +247,6 @@ public class Braintree extends ReactContextBaseJavaModule implements ActivityEve
     @Override
     public void onConfigurationFetched(Configuration configuration) {
         Log.d("Got configuration", configuration.toString());
-    }
-
-    @ReactMethod
-    public void getDeviceData(final ReadableMap options, final Callback successCallback) {
-        this.deviceDataCallback = successCallback;
-        this.collectDeviceData = true;
-        String env = options.getString("environment");
-
-
-        if (options.hasKey("merchantId")) {
-            String merchantId = options.getString("merchantId"); 
-            DataCollector.collectDeviceData(this.mBraintreeFragment, merchantId, new BraintreeResponseListener<String>() {
-                @Override
-                public void onResponse(String deviceData) {
-                    successCallback.invoke(null, deviceData);
-                }
-            });
-
-        } else {
-            String type = options.getString("dataCollector");
-
-            Log.d("Data Collector type", type);
-
-            if (type.equals("paypal")) {
-                DataCollector.collectPayPalDeviceData(this.mBraintreeFragment, new BraintreeResponseListener<String>() { 
-                    @Override
-                    public void onResponse(String deviceData) {
-                        Log.d("Device Data Response", deviceData);
-                        successCallback.invoke(null, deviceData);
-                    }
-                });
-            } else {
-                DataCollector.collectDeviceData(this.mBraintreeFragment, new BraintreeResponseListener<String>() {
-                    @Override
-                    public void onResponse(String deviceData) {
-                        successCallback.invoke(null, deviceData);
-                    }
-                });
-            }
-        }
-
-
     }
 
 

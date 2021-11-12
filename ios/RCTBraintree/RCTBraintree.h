@@ -15,7 +15,6 @@
 #import "BraintreeApplePay.h"
 #import "BraintreeCard.h"
 #import "BraintreeUI.h"
-#import "BTDataCollector.h"
 #import "PPDataCollector.h"
 
 @import PassKit;
@@ -24,7 +23,6 @@
 
 @property (nonatomic, strong) BTAPIClient *braintreeClient;
 @property (nonatomic, strong) UIViewController *reactRoot;
-@property (nonatomic, strong) BTDataCollector *dataCollector;
 
 // ApplePay
 @property (nonatomic, strong) PKPaymentRequest *paymentRequest;
