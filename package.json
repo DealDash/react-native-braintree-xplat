@@ -1,6 +1,6 @@
 {
     "name": "react-native-braintree-xplat",
-    "version": "4.2.11",
+    "version": "4.2.12",
     "description": "Cross platform Braintree module",
     "main": "index.js",
     "author": {
@@ -18,9 +18,9 @@
     "license": "MIT",
     "respository": {
         "type": "git",
-        "url": "git@github.com:CodeFishStudio/react-native-braintree-xplat.git"
+        "url": "git@github.com:DealDash/react-native-braintree-xplat.git"
     },
-    "homepage": "https://github.com/CodeFishStudio/react-native-braintree-xplat#readme",
+    "homepage": "https://github.com/DealDash/react-native-braintree-xplat#readme",
     "files": [
         "android/",
         "ios/",
